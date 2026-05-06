@@ -1,0 +1,27 @@
+{
+  "name": "backen_w_deploy",
+  "version": "1.0.0",
+  "description": "Learning backend with JS and Deploying an product.",
+  "keywords": [
+    "node"
+  ],
+  "homepage": "https://github.com/KarmSorathiya378/Backend_with_deploy#readme",
+  "bugs": {
+    "url": "https://github.com/KarmSorathiya378/Backend_with_deploy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarmSorathiya378/Backend_with_deploy.git"
+  },
+  "license": "ISC",
+  "author": "karm Sorathiya",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1"
+  }
+}
