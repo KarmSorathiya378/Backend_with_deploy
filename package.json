@@ -5,7 +5,8 @@
   "keywords": [
     "javascript",
     "backend",
-    "node"
+    "node",
+    "chai"
   ],
   "homepage": "https://github.com/KarmSorathiya378/Backend_with_deploy#readme",
   "bugs": {
@@ -20,7 +21,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/  index.js"
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
