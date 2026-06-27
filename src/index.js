@@ -1,7 +1,6 @@
-import dotenv from "dotenv";
+import "dotenv/config";
 import { app } from "./app.js";
 import connectDB from "./db/index.js";
-dotenv.config();
 
 
 connectDB()
@@ -10,7 +9,7 @@ connectDB()
         console.log("Error in connection between db and src/index.js", error);
     })
     app.listen(process.env.PORT || 8000, () => {
-        console.log(`Server is running on port: ${process.env.PORT || 8000} `);
+        console.log(`Server is running on port: ${process.env.PORT} `);
     })
 })
 .catch( (err) => {
