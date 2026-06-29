@@ -1,0 +1,40 @@
+$kind: http-request
+name: register
+url: "{{server}}/users/register"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: fullname
+      value: Karm S
+      description: ""
+      disabled: false
+    - type: text
+      key: username
+      value: karm
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: karm.GO6.com
+      description: ""
+      disabled: false
+    - type: text
+      key: password
+      value: "12345678"
+      description: ""
+      disabled: false
+    - type: file
+      key: avatar
+      src:
+        - postman-cloud:///1f171f57-542b-4bf0-b39f-b0203f88ed19
+      description: ""
+      disabled: false
+    - type: file
+      key: coverImage
+      src:
+        - postman-cloud:///1f171f0a-022a-41f0-84d8-bb3954f06fd6
+      description: ""
+      disabled: false
+order: 1782731489565

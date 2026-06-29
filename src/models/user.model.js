@@ -1,5 +1,3 @@
-import dns from 'dns';
-dns.setServers(['8.8.8.8' || '1.1.1.1']);
 import mongoose, {Schema} from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
