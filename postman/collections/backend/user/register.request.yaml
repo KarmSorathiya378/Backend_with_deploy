@@ -1,6 +1,6 @@
 $kind: http-request
 name: register
-url: "{{server}}/users/register"
+url: "{{server}}/users/"
 method: POST
 body:
   type: formdata
