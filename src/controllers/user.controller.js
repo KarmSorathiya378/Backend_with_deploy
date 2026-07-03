@@ -5,7 +5,6 @@ import { uploadOnCloudinary } from "../utils/fileupload.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
 
-
 const generateAccessAndRefreshToken = async(userid) => {
     try {
         const user = await  User.findById(userid)
@@ -225,9 +224,42 @@ const refreshAccesstoken = asyncHandler( async (req, res) => {
 })
 
 
+const changeCurrentPassword = asyncHandler(async (req, res) => {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if(!(newPassword === confirmPassword)){
+        throw new ApiError(400, "Confirm password is not matching")
+    }
+
+    const user = await User.findById(req.user._id);
+    const isPasswordCorrect = await user.isPasswordCorrect(oldPassword)
+
+    if(!isPasswordCorrect){
+        throw new ApiError(400, "Invalid Password" )
+    }
+
+    user.password = newPassword
+    await user.save({validateBeforeSave: false})
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200, {}, "Password Changed Successfully"))
+})
+
+
+const getCurrentUser = asyncHandler(async (req, res) => {
+    return res
+    .status(200)
+    .json(
+        200, req.user, "Current user fetched successfully"
+    )
+})
+
 export { 
     registerUser,
     loginUser,
     logoutUser,
-    refreshAccesstoken
+    refreshAccesstoken,
+    changeCurrentPassword,
+    getCurrentUser
  } 
