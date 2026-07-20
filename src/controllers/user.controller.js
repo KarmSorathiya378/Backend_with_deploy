@@ -3,6 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/fileupload.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { deleteOldAvatar } from "../utils/deleteOldAvatar.js";
 import jwt from "jsonwebtoken";
 
 const generateAccessAndRefreshToken = async(userid) => {
@@ -87,7 +88,9 @@ const registerUser = asyncHandler( async(req, res) => {
         throw new ApiError(500, " Something wnet Wrong while registering the user")
     }
 
-    return res.status(201).json(
+    return res
+    .status(201)
+    .json(
         new ApiResponse(200, createdUser, "User registered successfully ")
     )
 })
@@ -288,6 +291,8 @@ const updateAvatar = aysncHandler(async (req, res) =>
                 throw new ApiError(400, "Avatar is required")
             }
 
+            const oldAvatar = await User.findById(req.user._id).select("avatar")
+            
             const avatar = await uploadOnCloudinary(avatarLocalPath)
 
             if(!avatar.url){
@@ -303,6 +308,10 @@ const updateAvatar = aysncHandler(async (req, res) =>
                 },
                 {new: true}
             ).select("-password")
+
+            if(oldAvatar?.avatar && oldAvatar.avatar !== avatar.url){
+                await deleteOldAvatar(oldAvatar.avatar)
+            }
 
             return res
             .status(200)
